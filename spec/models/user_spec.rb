@@ -8,14 +8,12 @@ RSpec.describe User, type: :model do
       user.valid?
       expect(user.errors[:name]).to_not include("can't be blank")
     end
-
     it 'shows error if name is empty' do
       user = User.new
       user.name = ''
       user.valid?
       expect(user.errors[:name]).to include("can't be blank")
     end
-
     it 'shows error if name is too long' do
       user = User.new
       user.name = 'namewithmorethan18characters'
@@ -61,23 +59,23 @@ RSpec.describe User, type: :model do
   end
 
   describe 'check associations' do
-    it "should have many posts" do
+    it 'should have many posts' do
       associations = User.reflect_on_association(:posts)
       expect(associations.macro).to eq(:has_many)
     end
-    it "should have many comments" do
+    it 'should have many comments' do
       associations = User.reflect_on_association(:comments)
       expect(associations.macro).to eq(:has_many)
     end
-    it "should have many likes" do
+    it 'should have many likes' do
       associations = User.reflect_on_association(:likes)
       expect(associations.macro).to eq(:has_many)
     end
-    it "should have many friendships" do
+    it 'should have many friendships' do
       associations = User.reflect_on_association(:friendships)
       expect(associations.macro).to eq(:has_many)
     end
-    it "should have many inverse friendships" do
+    it 'should have many inverse friendships' do
       associations = User.reflect_on_association(:inverse_friendships)
       expect(associations.macro).to eq(:has_many)
     end
