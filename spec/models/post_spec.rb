@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  describe 'check the user name' do
+  describe 'check the post content' do
     it 'does not show error if have content' do
       post = Post.new
-      post.content = 'coment post'
+      post.content = 'content post'
       post.valid?
       expect(post.errors[:content]).to_not include("can't be blank")
     end
