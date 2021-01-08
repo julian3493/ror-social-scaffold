@@ -25,7 +25,7 @@ RSpec.describe Post, type: :model do
       associations = Post.reflect_on_association(:likes)
       expect(associations.macro).to eq(:has_many)
     end
-    it "should have belongs to user" do
+    it 'should belongs to user' do
       associations = Post.reflect_on_association(:user)
       expect(associations.macro).to eq(:belongs_to)
     end
