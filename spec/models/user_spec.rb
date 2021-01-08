@@ -60,4 +60,26 @@ RSpec.describe User, type: :model do
     end
   end
 
+  describe 'check associations' do
+    it "should have many posts" do
+      associations = User.reflect_on_association(:posts)
+      expect(associations.macro).to eq(:has_many)
+    end
+    it "should have many comments" do
+      associations = User.reflect_on_association(:comments)
+      expect(associations.macro).to eq(:has_many)
+    end
+    it "should have many likes" do
+      associations = User.reflect_on_association(:likes)
+      expect(associations.macro).to eq(:has_many)
+    end
+    it "should have many friendships" do
+      associations = User.reflect_on_association(:friendships)
+      expect(associations.macro).to eq(:has_many)
+    end
+    it "should have many inverse friendships" do
+      associations = User.reflect_on_association(:inverse_friendships)
+      expect(associations.macro).to eq(:has_many)
+    end
+  end
 end
