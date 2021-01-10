@@ -2,15 +2,12 @@
 
 > This repo includes intial code for social media app with basic styling. Its purpose is to be a starting point for Microverse students.
 
+![screenshot](/app/assets/images/Screenshot_1.png)
+
 ## Built With
 
 - Ruby v2.7.0
 - Ruby on Rails v5.2.4
-
-## Live Demo
-
-TBA
-
 
 ## Getting Started
 
