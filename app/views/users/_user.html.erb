@@ -13,6 +13,8 @@
       <p>You have sended a friend request</p>
     <% elsif !current_user.friend?(user) %>
       <%= link_to 'Add friend', request_friendship_user_path(user), method: :post, class: 'profile-link btn btn-secondary' %>
+    <% else %>
+      <%= link_to 'Delete friend', unfriend_user_path(user), method: :delete, class: 'profile-link btn btn-secondary' %>
     <% end %>
   </li>
 <% end %>

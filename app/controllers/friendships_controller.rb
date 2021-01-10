@@ -13,6 +13,16 @@ class FriendshipsController < ApplicationController
   end
 
   def destroy
+    @friendship = Friendship.find_by(user_id: params[:id], friend_id: current_user.id)
+    if @friendship
+      @friendship.destroy
+      redirect_to users_path, notice: 'Friend has been removed'
+    else
+      redirect_to root_path, alert: 'You are not allowed to do this'
+    end
+  end
+
+  def reject_friend
     @friendship = Friendship.find_by(params[:user_id], friend_id: params[:id])
     if @friendship
       @friendship.destroy
