@@ -16,6 +16,8 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.find_by(user_id: params[:id], friend_id: current_user.id)
     if @friendship
       @friendship.destroy
+      @inverse = Friendship.find_by(user_id: current_user.id, friend_id: params[:id])
+      @inverse.destroy if @inverse
       redirect_to users_path, notice: 'Friend has been removed'
     else
       redirect_to root_path, alert: 'You are not allowed to do this'
