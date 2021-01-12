@@ -64,7 +64,7 @@ Open `http://localhost:3000/` in your browser.
 
 ### Deployment
 
-TBA
+- Deployment using heroku [link app](https://vast-peak-38365.herokuapp.com/users/sign_in)
 
 ## Authors
 
