@@ -12,26 +12,24 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  has_many :confirmed_friendships, -> { where status: true }, class_name: 'Friendship'
+  has_many :friends, through: :confirmed_friendships
+  has_many :pending_friendships, -> { where status: false }, class_name: 'Friendship', foreign_key: 'user_id'
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+  has_many :inverted_friendships, -> { where status: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friend_requests, through: :inverted_friendships, source: :user
+
   scope :all_except, ->(user) { where.not(id: user) }
-
-  def friends
-    friends_array = friendships.map { |friendship| friendship.friend if friendship.status }
-    friends_array += inverse_friendships.map { |friendship| friendship.user if friendship.status }
-    friends_array.compact
-  end
-
-  def pending_friends
-    friendships.map { |friendship| friendship.friend unless friendship.status }.compact
-  end
-
-  def friend_requests
-    inverse_friendships.map { |friendship| friendship.user unless friendship.status }.compact
-  end
 
   def confirm_friend(user)
     friendship = inverse_friendships.find { |friend| friend.user == user }
     friendship.status = true
     friendship.save
+    second = Friendship.new
+    second.user_id = friendship.friend_id
+    second.friend_id = friendship.user_id
+    second.status = true
+    second.save
   end
 
   def friend?(user)
