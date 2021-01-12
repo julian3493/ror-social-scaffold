@@ -12,6 +12,9 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :inverse_friendships, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  has_many :pending_friendships, -> { where status: false }, class_name: "Friendship", foreign_key: "user_id"
+  has_many :pending_friends, through: :pending_friendships, source: :friend
+
   scope :all_except, ->(user) { where.not(id: user) }
 
   def friends
@@ -19,11 +22,7 @@ class User < ApplicationRecord
     friends_array = inverse_friendships.map { |friendship| friendship.user if friendship.status }
     friends_array.compact
   end
-
-  def pending_friends
-    friendships.map { |friendship| friendship.friend unless friendship.status }.compact
-  end
-
+  
   def friend_requests
     inverse_friendships.map { |friendship| friendship.user unless friendship.status }.compact
   end
