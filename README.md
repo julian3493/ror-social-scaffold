@@ -68,7 +68,11 @@ TBA
 
 ## Authors
 
-TBA
+👤 **Julian Ramos**
+
+- GitHub: [@julian3493](https://github.com/julian3493)
+- Twitter: [@JulianR16893833](https://twitter.com/JulianR16893833)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/julian-ramos-arevalo/)
 
 ## 🤝 Contributing
 
@@ -81,10 +85,6 @@ Feel free to check the [issues page](issues/).
 Give a ⭐️ if you like this project!
 
 ## Acknowledgments
-
-TBA
-
-## 📝 License
 
 TBA
 
